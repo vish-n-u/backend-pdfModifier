@@ -24,6 +24,7 @@ exports.createPdf = async(req,res)=>{
 
 exports.getPdfById = async(req,res)=>{
     try{
+        console.log("req.params.id",req.params.id)
         const pdfData = await Pdf.findById(req.params.id)
         const buffer = Buffer.from(pdfData.pdf, 'utf-8');
         return res.status(200).send(buffer)
