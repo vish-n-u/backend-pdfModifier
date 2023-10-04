@@ -13,7 +13,8 @@ exports.createPdf = async(req,res)=>{
         const newPdf = await Pdf.create(pdfObject);
         req.user.pdfs.push({_id:newPdf._id,createdAt:newPdf.createdAt})
         await req.user.save()
-        return res.status(201).send({message:"successfully created"})
+        console.log("data",req.user)
+        return res.status(201).send({message:req.user})
     }
     catch(err){
         console.log(err)

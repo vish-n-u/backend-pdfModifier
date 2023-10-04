@@ -12,7 +12,7 @@ exports.verifyJwt = async (req, res, next) => {
       let { email } = jwt.decode(req.cookies.token);
       let user = await User.findOne({ email });
       req.user = user;
-  
+      console.log("user",req.user)
       next();
     } catch (jwtError) {
       

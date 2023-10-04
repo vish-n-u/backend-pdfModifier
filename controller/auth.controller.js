@@ -43,6 +43,6 @@ exports.login = async (req, res) => {
     });
   } catch (err) {
     console.log(err);
-    return res.status(500).send({ message: "server err" });
+    return res.status(500).json({ message: "server err" });
   }
 };

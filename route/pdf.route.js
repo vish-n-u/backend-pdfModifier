@@ -7,6 +7,7 @@ const upload = multer({ storage });
 
 
 const authRoute = (app) => {
+  console.log("called here")
   app.post("/pdfModifier/api/v1/pdf",upload.single('pdfFile'),
 [jwtValidation.verifyJwt],
 pdfController.createPdf
