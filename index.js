@@ -7,7 +7,7 @@ const DB_URL = require("./config/db.config");
 const cors = require("cors")
 let dataExisting
 const corsOptions = {
-  origin: ['https://main--spontaneous-tapioca-4420f2.netlify.app',"http://localhost:3000"],
+  origin: '*',
   credentials: true, // Allow cookies to be sent with credentials
 };
 
