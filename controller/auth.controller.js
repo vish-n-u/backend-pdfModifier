@@ -23,8 +23,9 @@ exports.registration = async (req, res) => {
       sameSite: 'none', // Set for cross-origin requests
       secure: true, // Required for HTTPS
      });
+     console.log("nreUser",newUser)
     return res.status(201).send({
-      message: newUser,
+      message:[newUser,token],
     });
   } catch (err) {
     console.log(err);
@@ -45,8 +46,9 @@ exports.login = async (req, res) => {
         secure: true, // Required for HTTPS
        });
        req.doesUserExist.token = token;
+       console.log("req.doesUserExist",req.doesUserExist,token);
     return res.status(200).send({
-      message: req.doesUserExist
+      message: [req.doesUserExist,token]
     });
   } catch (err) {
     console.log(err);
