@@ -3,13 +3,14 @@ const User = require("../model/user.model");
 const { secretKey } = require("../config/server.config");
 exports.verifyJwt = async (req, res, next) => {
   try {
-    if (!req.cookies.token) {
+    const token = req.header('Authorization');
+    if (!token) {
       return res.status(401).send({ message: "token" });
     }
 
     try {
-      const isValidJwt = await jwt.verify(req.cookies.token, secretKey);
-      let { email } = jwt.decode(req.cookies.token);
+      const isValidJwt = await jwt.verify(token, secretKey);
+      let { email } = jwt.decode(token);
       let user = await User.findOne({ email });
       req.user = user;
       console.log("user",req.user)

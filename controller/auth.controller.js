@@ -16,13 +16,13 @@ exports.registration = async (req, res) => {
     };
     const newUser = await User.create(obj);
     let token = jwt.sign({ email: newUser.email }, secretKey);
+    newUser.token = token;
     res.cookie('token', token, { httpOnly: true,
       domain: 'spontaneous-tapioca-4420f2.netlify.app', //spontaneous-tapioca-4420f2
       path: '/',
       sameSite: 'none', // Set for cross-origin requests
       secure: true, // Required for HTTPS
      });
-    
     return res.status(201).send({
       message: newUser,
     });
@@ -44,6 +44,7 @@ exports.login = async (req, res) => {
         sameSite: 'none', // Set for cross-origin requests
         secure: true, // Required for HTTPS
        });
+       req.doesUserExist.token = token;
     return res.status(200).send({
       message: req.doesUserExist
     });
