@@ -17,7 +17,7 @@ exports.registration = async (req, res) => {
     const newUser = await User.create(obj);
     let token = jwt.sign({ email: newUser.email }, secretKey);
     res.cookie('token', token, { httpOnly: true,
-        domain: 'localhost',
+        domain: 'spontaneous-tapioca-4420f2.netlify.app',
         path: '/', });
     
     return res.status(201).send({
@@ -36,7 +36,7 @@ exports.login = async (req, res) => {
   try {
     let token = jwt.sign({ email: req.doesUserExist.email }, secretKey);
     res.cookie('token', token, { httpOnly: true,
-        domain: 'localhost',
+        domain: 'spontaneous-tapioca-4420f2.netlify.app',
         path: '/', });
     return res.status(200).send({
       message: req.doesUserExist
