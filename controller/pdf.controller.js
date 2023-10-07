@@ -13,7 +13,6 @@ exports.createPdf = async(req,res)=>{
         const newPdf = await Pdf.create(pdfObject);
         req.user.pdfs.push({_id:newPdf._id,createdAt:newPdf.createdAt})
         await req.user.save()
-        console.log("data",req.user)
         return res.status(201).send({message:req.user})
     }
     catch(err){
@@ -25,11 +24,8 @@ exports.createPdf = async(req,res)=>{
 
 exports.getPdfById = async(req,res)=>{
     try{
-        console.log("req.params.id",req.params.id)
         const pdfData = await Pdf.findById(req.params.id)
-        console.log("pdfData",pdfData)
         const buffer = Buffer.from(pdfData.pdf, 'utf-8');
-        console.log("buffer: " + buffer)
         return res.status(200).send(buffer)
     }
     catch(err){
