@@ -17,10 +17,15 @@ exports.registration = async (req, res) => {
     const newUser = await User.create(obj);
     let token = jwt.sign({ email: newUser.email }, secretKey);
     newUser.token = token;
+    const newObj = {
+      userName:newUser.userName,
+      email:newUser.email,
+      pdfs:newUser.pdfs
+    }
     
      console.log("nreUser",newUser)
     return res.status(201).send({
-      message:[newUser,token],
+      message:[newObj,token],
     });
   } catch (err) {
     console.log(err);
@@ -35,9 +40,14 @@ exports.login = async (req, res) => {
   try {
     let token = jwt.sign({ email: req.doesUserExist.email }, secretKey);
     
-       req.doesUserExist.token = token;
+       req.doesUserExist
+       const newObj = {
+        userName:req.doesUserExist.userName,
+        email:req.doesUserExist.email,
+        pdfs:req.doesUserExist.pdfs
+      }
     return res.status(200).send({
-      message: [req.doesUserExist,token]
+      message: [newObj,token]
     });
   } catch (err) {
     console.log(err);
