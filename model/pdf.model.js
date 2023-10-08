@@ -14,6 +14,10 @@ const userSchema = new mongoose.Schema({
         type: Date,
         default: Date.now, // Automatically set the createdAt timestamp
       },
+      fileName:{
+        type: String,
+
+      },
 })
 
 module.exports = mongoose.model("Pdf", userSchema)
