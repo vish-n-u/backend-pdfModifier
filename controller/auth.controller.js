@@ -46,6 +46,7 @@ exports.login = async (req, res) => {
         email:req.doesUserExist.email,
         pdfs:req.doesUserExist.pdfs
       }
+      newObj?.pdfs?.reverse()
     return res.status(200).send({
       message: [newObj,token]
     });
